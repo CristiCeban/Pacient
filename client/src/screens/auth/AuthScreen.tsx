@@ -18,6 +18,7 @@ import 'react-activity/dist/react-activity.css';
 import * as yup from 'yup'
 import {Formik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
+import {onLogin} from "../../redux/actions/authActions";
 // import {onLogin} from "../../redux/actions/authActions";
 // import {ApplicationState} from "../../redux/reducers";
 
@@ -38,15 +39,14 @@ const validationSchema = yup.object().shape({
 
 
 const AuthScreen = () =>{
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const classes = useStyles();
     // const {inProgress,error} = useSelector((state: ApplicationState) => state.authReducer);
     const formikRef = useRef(null);
 
 
     const onSignIn= (values : any) => {
-        console.log(values)
-        // dispatch(onLogin(values))
+        dispatch(onLogin(values))
     }
 
     return (

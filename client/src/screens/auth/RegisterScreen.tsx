@@ -18,6 +18,7 @@ import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 // @ts-ignore
 import { Bounce } from 'react-activity';
+import {onRegister} from "../../redux/actions/authActions";
 // import {onRegister} from "../../redux/actions/authActions";
 
 
@@ -60,8 +61,8 @@ const RegisterScreen = () => {
     const formikRef = useRef(null);
 
     const onSignUp= (values : any) => {
-        console.log(values)
-        // dispatch(onRegister(values))
+        // console.log(values)
+        dispatch(onRegister(values))
     }
     return (
         <Container component="main" maxWidth="xs">
