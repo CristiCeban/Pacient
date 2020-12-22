@@ -61,4 +61,8 @@ public class PacientService {
 
         pacientRepository.save(pDao);
     }
+
+    public boolean isExistent(String cnp){
+        return pacientRepository.existsByCnp(cnp);
+    }
 }

@@ -1,5 +1,8 @@
 package com.pacienti.pacient.Controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.pacienti.pacient.DTO.PacientDto;
 import com.pacienti.pacient.DTO.PacientsDto;
 import com.pacienti.pacient.Model.UserDao;
@@ -57,5 +60,15 @@ public class PacientController {
        return ResponseEntity.noContent().build();
 
 
+    }
+
+    @GetMapping(value = "/exist")
+    public ResponseEntity<Object> existPacient(@RequestParam String cnp){
+        boolean exist = pacientService.isExistent(cnp);
+
+        Map<String,Object> map = new HashMap<>(2);
+        map.put("exist", exist);
+        
+        return ResponseEntity.ok(map);
     }
 }
