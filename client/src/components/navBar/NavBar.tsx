@@ -1,18 +1,22 @@
 import React from 'react'
 import { fade, makeStyles } from '@material-ui/core/styles';
-import {AppBar, Link, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, IconButton, Link, Toolbar, Typography} from "@material-ui/core";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDiagnoses,faHome,faNotesMedical,faHospitalUser,faPills } from "@fortawesome/free-solid-svg-icons";
+import {useLocation} from "react-router";
 
 enum routerEnum {
     main = '/',
-    pacient = '/pacient',
+    patient = '/patient',
     diagnostic = '/diagnostic',
-    tratament = '/tratament',
-    reteta = '/reteta',
-    statistics = '/statistics'
+    treatment = '/treatment',
+    recipe = '/recipe',
 }
 
 const NavBar = () => {
     const classes = useStyles();
+    const location = useLocation();
+    const {pathname} = location;
 
     return(
         <div className={classes.root}>
@@ -22,9 +26,60 @@ const NavBar = () => {
                 <Toolbar>
                     <Typography className={classes.title} variant="h6" noWrap>
                         <Link href={'/'} style={{color:'black'}}>
-                            Pacients Managment
+                            Patients Management
                         </Link>
                     </Typography>
+
+                    <Link href={'/'}>
+                        <IconButton>
+                            <FontAwesomeIcon icon={faHome} className={pathname === routerEnum.main
+                                ? classes.selectedNavIcon
+                                :
+                                undefined}
+                            />
+                        </IconButton>
+                    </Link>
+
+                    <Link href={'/patient'}>
+                        <IconButton>
+                            <FontAwesomeIcon icon={faHospitalUser} className={pathname.includes(routerEnum.patient)
+                                ? classes.selectedNavIcon
+                                :
+                                undefined}
+                            />
+                        </IconButton>
+                    </Link>
+
+                    <Link href={'/diagnostic'}>
+                        <IconButton>
+                            <FontAwesomeIcon icon={faDiagnoses} className={pathname.includes(routerEnum.diagnostic)
+                                ? classes.selectedNavIcon
+                                :
+                                undefined}
+                            />
+                        </IconButton>
+                    </Link>
+
+                    <Link href={'/treatment'}>
+                        <IconButton>
+                            <FontAwesomeIcon icon={faPills} className={pathname.includes(routerEnum.treatment)
+                                ? classes.selectedNavIcon
+                                :
+                                undefined}
+                            />
+                        </IconButton>
+                    </Link>
+
+                    <Link href={'/recipe'}>
+                        <IconButton>
+                            <FontAwesomeIcon icon={faNotesMedical} className={pathname.includes(routerEnum.recipe)
+                                ? classes.selectedNavIcon
+                                :
+                                undefined}
+                            />
+                        </IconButton>
+                    </Link>
+
                 </Toolbar>
             </AppBar>
         </div>
