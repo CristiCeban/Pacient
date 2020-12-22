@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class RetetaDto {
+    private Integer nrreteta;
     private String codfiscal;
     private String unitatemedicala;
     private String judet;
