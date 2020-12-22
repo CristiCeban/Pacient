@@ -31,7 +31,7 @@ public class PacientDao {
 
     private String tipasig;
 
-    @OneToOne(mappedBy = "pacient_id")
+    @OneToOne(mappedBy = "pacient")
     private UserDao user;
 
 
