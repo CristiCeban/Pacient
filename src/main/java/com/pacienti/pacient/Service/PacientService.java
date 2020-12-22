@@ -32,4 +32,33 @@ public class PacientService {
 
         return new PacientsDto(totalElements,totalPages,pacientList);
     }
+
+    public void addPacient(PacientDto pacient,UserDao user){
+        PacientDao pDao = new PacientDao();
+
+        pDao.setCnp(pacient.getCnp());
+        pDao.setNume(pacient.getNume());
+        pDao.setPrenume(pacient.getPrenume());
+        pDao.setTipasig(pacient.getTipasig());
+        pDao.setVarsta(pacient.getVarsta());
+        pDao.setUser(user);
+        pacientRepository.save(pDao);
+    }
+
+    public void deletePacient(Integer id){
+        pacientRepository.deleteById(id);
+    }
+    
+
+    public void updatePacient(PacientDto pacient,Integer id){
+        PacientDao pDao = pacientRepository.findById(id).orElseThrow();
+
+        pDao.setCnp(pacient.getCnp());
+        pDao.setNume(pacient.getNume());
+        pDao.setPrenume(pacient.getPrenume());
+        pDao.setTipasig(pacient.getTipasig());
+        pDao.setVarsta(pacient.getVarsta());
+
+        pacientRepository.save(pDao);
+    }
 }

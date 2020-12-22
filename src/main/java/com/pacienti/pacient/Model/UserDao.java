@@ -50,9 +50,8 @@ public class UserDao {
   private String name;
 
   
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "pacient_id",referencedColumnName = "id")
-  private PacientDao pacient;
+  @OneToMany(mappedBy = "user")
+  private List<PacientDao> pacients;
 
 
 
