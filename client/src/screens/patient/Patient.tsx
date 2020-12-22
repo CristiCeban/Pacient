@@ -8,7 +8,7 @@ const Patient = () => {
 
 
     var columns = [
-        {title: "id", field: "id", hidden: true},
+        {title: 'id', field: "id", hidden: true},
         {title: "First name", field: "first_name"},
         {title: "Last name", field: "last_name"},
         {title: "email", field: "email"}

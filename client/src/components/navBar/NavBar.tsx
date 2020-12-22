@@ -2,8 +2,10 @@ import React from 'react'
 import { fade, makeStyles } from '@material-ui/core/styles';
 import {AppBar, IconButton, Link, Toolbar, Typography} from "@material-ui/core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDiagnoses,faHome,faNotesMedical,faHospitalUser,faPills } from "@fortawesome/free-solid-svg-icons";
+import { faDiagnoses,faHome,faNotesMedical,faHospitalUser,faPills,faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import {useLocation} from "react-router";
+import {onLogout} from "../../redux/actions/generalActions";
+import {useDispatch} from "react-redux";
 
 enum routerEnum {
     main = '/',
@@ -14,9 +16,14 @@ enum routerEnum {
 }
 
 const NavBar = () => {
+    const dispatch = useDispatch();
     const classes = useStyles();
     const location = useLocation();
     const {pathname} = location;
+
+    const logout = async () => {
+        dispatch(onLogout());
+    }
 
     return(
         <div className={classes.root}>
@@ -80,6 +87,10 @@ const NavBar = () => {
                         </IconButton>
                     </Link>
 
+                    <IconButton onClick={logout}>
+                        <FontAwesomeIcon icon={faSignOutAlt}/>
+                    </IconButton>
+
                 </Toolbar>
             </AppBar>
         </div>
@@ -100,44 +111,6 @@ const useStyles = makeStyles((theme) => ({
             display: 'block',
         },
         color : 'black'
-    },
-    search: {
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.white, 0.15),
-        '&:hover': {
-            backgroundColor: fade(theme.palette.common.white, 0.25),
-        },
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(1),
-            width: 'auto',
-        },
-        color : 'black'
-    },
-    searchIcon: {
-        padding: theme.spacing(0, 2),
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    inputRoot: {
-        color: 'inherit',
-    },
-    inputInput: {
-        padding: theme.spacing(1, 1, 1, 0),
-        paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            width: '12ch',
-            '&:focus': {
-                width: '20ch',
-            },
-        },
     },
     selectedNavIcon : {
         color:'#a50101'
