@@ -24,7 +24,7 @@ public class PacientDao {
     private Integer id;
 
     @Column(unique = true,name = "cnp")
-    private String cnp;
+    private Long cnp;
 
     private String nume;
 

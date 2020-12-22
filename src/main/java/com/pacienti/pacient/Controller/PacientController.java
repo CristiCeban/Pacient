@@ -63,12 +63,12 @@ public class PacientController {
     }
 
     @GetMapping(value = "/exist")
-    public ResponseEntity<Object> existPacient(@RequestParam String cnp){
+    public ResponseEntity<Object> existPacient(@RequestParam Long cnp){
         boolean exist = pacientService.isExistent(cnp);
 
         Map<String,Object> map = new HashMap<>(2);
         map.put("exist", exist);
-        
+
         return ResponseEntity.ok(map);
     }
 }

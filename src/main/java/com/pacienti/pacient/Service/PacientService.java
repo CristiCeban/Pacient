@@ -62,7 +62,7 @@ public class PacientService {
         pacientRepository.save(pDao);
     }
 
-    public boolean isExistent(String cnp){
+    public boolean isExistent(Long cnp){
         return pacientRepository.existsByCnp(cnp);
     }
 }
