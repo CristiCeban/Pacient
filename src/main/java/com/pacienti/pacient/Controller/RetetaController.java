@@ -22,7 +22,7 @@ public class RetetaController {
 
     @PostMapping
     public ResponseEntity<?> addReteta(@RequestBody RetetaDto reteta){
-        
+
         retetaService.addReteta(reteta);
 
         return ResponseEntity.noContent().build();
@@ -34,7 +34,7 @@ public class RetetaController {
     }
 
     @GetMapping(value = "/delete")
-    public void deleteReteta(@RequestParam(name = "id") Integer id){
+    public void deleteReteta(@RequestParam Integer id){
         retetaService.removeReteta(id);
     }
 

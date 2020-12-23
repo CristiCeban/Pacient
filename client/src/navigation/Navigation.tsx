@@ -15,6 +15,7 @@ import Patient from "../screens/patient/Patient";
 import Recipe from "../screens/recipe/Recipe";
 import Treatment from "../screens/treatment/Treatment";
 import Diagnostic from "../screens/diagnostic/Diagnostic";
+import Pills from "../screens/Pills/Pills";
 
 const Navigation = ({history} : any) => {
     const {isLogged} = useSelector((state:ApplicationState) => state.authReducer)
@@ -76,6 +77,13 @@ const Navigation = ({history} : any) => {
                         <>
                             <NavBar/>
                             <Route component={Diagnostic}/>
+                        </>
+                    )}
+                    />
+                    <Route exact path={'/pills'} render={() => (
+                        <>
+                            <NavBar/>
+                            <Route component={Pills}/>
                         </>
                     )}
                     />
