@@ -13,26 +13,30 @@ export interface retetaInterface {
     codfiscal : string,
     judet : string,
     nrasigmed : string,
-    unitatemedicala : string
+    unitatemedicala : string,
+    pacient : PatientInterface,
 }
 
 const Recipe = () => {
     const classes = useStyles();
 
-    const [data, setData] = useState<PatientInterface[]>([]); //table data
+    const [data, setData] = useState<retetaInterface[]>([]); //table data
     const [nextPage,setNextPage] = useState<number>(0);
     const [lastPage,setLastPage] = useState<number>(0);
     const [inProgress,setInProgress] = useState<boolean>(true)
     const [iserror, setIserror] = useState<boolean>(false)
     const [errorMessages, setErrorMessages] = useState<string[]>([])
 
+    const [pacients,setPacients] = useState<any>({})
     useEffect(()=>{
         (async () => {
             try{
                 setInProgress(true)
                 const response = await ApiService.getWithBody('reteta', {page: 0, size: 10})
                 console.log(response)
-                setData(response.pacients);
+                const payload =  response.retete.map((el: retetaInterface) => ({...el,pacient : el.pacient.id}))
+                console.log(payload)
+                setData(payload);
                 setNextPage(prev => prev +1);
                 setLastPage(response.totalPages -1);
             }
@@ -43,6 +47,22 @@ const Recipe = () => {
             finally {
                 setInProgress(false)
             }
+
+            try{
+                const response = await ApiService.getWithBody('pacient', {page: 0, size: 10})
+                const payload = {}
+                response.pacients.map((pacient : PatientInterface) => {
+                    const {id,nume,prenume} = pacient;
+                    //@ts-ignore
+                    payload[id] = nume + ' ' + prenume;
+                })
+                setPacients(payload);
+                console.log(payload)
+            }
+            catch (e) {
+                console.log(e);
+            }
+
         })()
     },[])
 
@@ -52,6 +72,7 @@ const Recipe = () => {
         {title: "judet", field: "judet"},
         {title: "nr casa asigurari medicale", field: "nrasigmed"},
         {title: "Unitate medicala", field: "unitatemedicala"},
+        { title: 'Pacient details', field: 'pacient', lookup: pacients }
     ]
 
 
@@ -70,10 +91,18 @@ const Recipe = () => {
         if (newData.unitatemedicala === undefined) {
             errorList.push("Please enter unitatemedicala")
         }
+        if(newData.pacient === undefined) {
+            errorList.push("Please select pacient");
+        }
+        console.log(newData);
 
         if (errorList.length < 1) { //no error
             try {
-                const response = await ApiService.post('reteta', newData)
+                const payload = {
+                    ...newData,
+                    pacientId : newData.pacient,
+                }
+                const response = await ApiService.post('reteta', payload)
                 const dataToAdd = [...data];
                 dataToAdd.push(newData);
                 setData(dataToAdd);
@@ -113,7 +142,12 @@ const Recipe = () => {
 
         if (errorList.length < 1) { //no error
             try {
-                const response = await ApiService.post('reteta/update', newData)
+                const payload = {
+                    ...newData,
+                    pacientId : newData.pacient,
+                }
+                console.log(payload)
+                const response = await ApiService.post('reteta/update', payload)
                 const dataUpdate = [...data];
                 const index = oldData.tableData.id;
                 dataUpdate[index] = newData;

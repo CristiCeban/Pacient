@@ -1,5 +1,9 @@
 import React from "react";
 
+export interface TreatmentInterface {
+
+}
+
 const Treatment = () => {
     return(
         <div style={{marginTop:100}}>

@@ -11,9 +11,12 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity(name = "medicamente")
 public class MedicamentDao {
@@ -25,6 +28,7 @@ public class MedicamentDao {
     @Column(name = "denumire_medicament")
     private String denumiremedicament;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "medicament")
     private List<TratamentDao>  tratament;
 }

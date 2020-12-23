@@ -10,9 +10,12 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity(name = "tratament")
 public class TratamentDao {
@@ -23,14 +26,14 @@ public class TratamentDao {
     @ManyToOne
     @JoinColumn(name = "diagnostic_id")
     private DiagnosticDao diagnostic;
-    
+
     @ManyToOne
     @JoinColumn(name = "cod_medicament")
     private MedicamentDao medicament;
 
     private Double cantitate;
 
-    
+
     @ManyToOne
     @JoinColumn(name = "pacient_id")
     private PacientDao pacient;

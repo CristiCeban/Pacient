@@ -47,10 +47,10 @@ public class TratamentService {
         newTratament.setPacient(pacientRepository.findById(tratamentInfo.getPacientId()).orElseThrow());
 
         newTratament.setMedicament(medicamentRepository.findById(tratamentInfo.getCodmedicament()).orElseThrow());
-        
+
 
         tratamentRepository.save(newTratament);
-        
+
     }
 
     public void removeTratament(Integer id){
@@ -58,11 +58,11 @@ public class TratamentService {
     }
 
     public void updateTratament(TratamentDto tratamentInfo){
-    
+
         TratamentDao tratamentDao = tratamentRepository.findById(tratamentInfo.getPozitie()).orElseThrow();
 
         DiagnosticDao diagnostic = diagnosticRepository.findById(tratamentInfo.getDiagnosticId()).orElseThrow();
-        
+
         MedicamentDao medicament = medicamentRepository.findById(tratamentInfo.getCodmedicament()).orElseThrow();
 
         PacientDao pacient = pacientRepository.findById(tratamentInfo.getPacientId()).orElseThrow();
@@ -70,7 +70,7 @@ public class TratamentService {
         tratamentDao.setDiagnostic(diagnostic);
         tratamentDao.setMedicament(medicament);
         tratamentDao.setPacient(pacient);
-        
+
         tratamentRepository.save(tratamentDao);
     }
 
@@ -80,11 +80,12 @@ public class TratamentService {
         Page<TratamentDao> tratamente = tratamentRepository.findAllByOrderByPozitieDesc(pageRequest);
 
         List<TratamentDao> listaTratamente = tratamente.getContent();
+        System.out.println(listaTratamente);
 
         long totalElements = tratamente.getTotalElements();
         int totalPages = tratamente.getTotalPages();
 
         return new Tratamente(totalElements,totalPages,listaTratamente);
- 
+
     }
 }
