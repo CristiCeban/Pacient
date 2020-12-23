@@ -9,8 +9,8 @@ import tableIcons from "../../components/table/TableIcons";
 import ApiService from "../../services/api";
 
 export interface pillsInterface {
-    id : number,
-    name : string,
+    codmedicament : number,
+    denumiremedicament : string,
 }
 
 const Pills = () => {
@@ -27,8 +27,8 @@ const Pills = () => {
         (async () => {
             try{
                 setInProgress(true)
-                const response = await ApiService.getWithBody('reteta', {page: 0, size: 10})
-                setData(response.pacients);
+                const response = await ApiService.getWithBody('medicament', {page: 0, size: 10})
+                setData(response.medicamente);
                 setNextPage(prev => prev +1);
                 setLastPage(response.totalPages -1);
             }
@@ -45,13 +45,13 @@ const Pills = () => {
     const handleRowAdd = async (newData: any, resolve: Function) => {
         //validation
         let errorList = []
-        if (newData.denumire === undefined) {
-            errorList.push("Please enter cod_fiscal")
+        if (newData.denumiremedicament === undefined) {
+            errorList.push("Please enter medicament")
         }
 
         if (errorList.length < 1) { //no error
             try {
-                const response = await ApiService.post('reteta', newData)
+                const response = await ApiService.post('reteta', {denumire : newData.denumiremedicament})
                 const dataToAdd = [...data];
                 dataToAdd.push(newData);
                 setData(dataToAdd);
@@ -76,13 +76,16 @@ const Pills = () => {
     const handleRowUpdate = async (newData : any, oldData : any, resolve : Function) => {
         //validation
         let errorList = []
-        if (newData.denumire === undefined) {
-            errorList.push("Please enter cod_fiscal")
+        if (newData.denumiremedicament === undefined) {
+            errorList.push("Please enter medicament")
         }
-
         if (errorList.length < 1) { //no error
             try {
-                const response = await ApiService.post('reteta/update', newData)
+                const payload = {
+                    codmedicament : newData.codmedicament,
+                    denumire : newData.denumiremedicament,
+                }
+                const response = await ApiService.post('medicament/update', payload)
                 const dataUpdate = [...data];
                 const index = oldData.tableData.id;
                 dataUpdate[index] = newData;
@@ -107,7 +110,7 @@ const Pills = () => {
 
     const handleRowDelete = async (oldData: any, resolve: Function) => {
         try {
-            const response = await ApiService.getWithBody('reteta/delete', {id:oldData.id})
+            const response = await ApiService.getWithBody('medicament/delete', {id:oldData.codmedicament})
             const dataDelete = [...data];
             const index = oldData.tableData.id;
             dataDelete.splice(index,1);
@@ -124,8 +127,8 @@ const Pills = () => {
     }
 
     const columns = [
-        {title: 'id', field: "id", hidden: true},
-        {title: "denumire", field: "denumire"},
+        {title: 'id', field: "codmedicament", hidden: true},
+        {title: "denumire medicament", field: "denumiremedicament"},
     ]
 
     return(
