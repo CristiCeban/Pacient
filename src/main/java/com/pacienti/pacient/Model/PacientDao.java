@@ -44,4 +44,7 @@ public class PacientDao {
 
     @OneToMany(mappedBy = "pacient")
     private List<RetetaDao> reteta;
+    
+    @OneToMany(mappedBy = "pacient")
+    private List<TratamentDao> tratament;
 }

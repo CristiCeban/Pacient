@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -28,6 +30,9 @@ public class TratamentDao {
 
     private Double cantitate;
 
-    
+    @JsonIgnore
+    @ManyToOne()
+    @JoinColumn(name = "pacient_id")
+    private PacientDao pacient;
 
 }
