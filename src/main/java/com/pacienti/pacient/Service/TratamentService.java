@@ -8,10 +8,12 @@ import com.pacienti.pacient.Model.DiagnosticDao;
 import com.pacienti.pacient.Model.MedicamentDao;
 import com.pacienti.pacient.Model.PacientDao;
 import com.pacienti.pacient.Model.TratamentDao;
+import com.pacienti.pacient.Model.UserDao;
 import com.pacienti.pacient.Repository.DiagnosticRepository;
 import com.pacienti.pacient.Repository.MedicamentRepository;
 import com.pacienti.pacient.Repository.PacientRepository;
 import com.pacienti.pacient.Repository.TratamentRepository;
+import com.pacienti.pacient.Repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,8 +35,11 @@ public class TratamentService {
     @Autowired
     private DiagnosticRepository diagnosticRepository;
 
+    @Autowired
+    private UserRepository userRepository;
 
-    public void addTratament(TratamentDto tratamentInfo){
+
+    public void addTratament(TratamentDto tratamentInfo,UserDao user){
         TratamentDao newTratament = new TratamentDao();
 
 
@@ -48,6 +53,7 @@ public class TratamentService {
 
         newTratament.setMedicament(medicamentRepository.findById(tratamentInfo.getCodmedicament()).orElseThrow());
         
+        newTratament.setUser(user);
 
         tratamentRepository.save(newTratament);
         
@@ -66,6 +72,8 @@ public class TratamentService {
         MedicamentDao medicament = medicamentRepository.findById(tratamentInfo.getCodmedicament()).orElseThrow();
 
         PacientDao pacient = pacientRepository.findById(tratamentInfo.getPacientId()).orElseThrow();
+
+        
         tratamentDao.setCantitate(tratamentInfo.getCantitate());
         tratamentDao.setDiagnostic(diagnostic);
         tratamentDao.setMedicament(medicament);
