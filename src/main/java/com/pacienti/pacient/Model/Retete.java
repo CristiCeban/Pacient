@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 public class Retete {
     private long totalElements;
     private int totalPages;
-    private List<RetetaDao> pacients;
+    private List<RetetaDao> retete;
 
-    public Retete(long totalElements, int totalPages, List<RetetaDao> pacients) {
+    public Retete(long totalElements, int totalPages, List<RetetaDao> retete) {
         this.totalElements = totalElements;
         this.totalPages = totalPages;
-        this.pacients = pacients;
+        this.retete = retete;
     }
 }
