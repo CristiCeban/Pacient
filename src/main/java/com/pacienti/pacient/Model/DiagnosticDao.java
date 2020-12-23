@@ -6,8 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +23,7 @@ public class DiagnosticDao {
 
     private String tip;
 
-    @ManyToMany(mappedBy = "diagnostics")
+    @OneToMany(mappedBy = "diagnostic")
     private List<TratamentDao> tratament;
 
     
