@@ -22,7 +22,7 @@ public class DiagnosticController {
 
 
     @PostMapping
-    public ResponseEntity<?> addReteta(@RequestBody DiagnosticDto diagnosticInfo){
+    public ResponseEntity<?> addDiagnostic(@RequestBody DiagnosticDto diagnosticInfo){
 
         diagnosticService.addDiagnostic(diagnosticInfo);
 
