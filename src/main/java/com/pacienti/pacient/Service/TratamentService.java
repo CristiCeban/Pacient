@@ -74,7 +74,7 @@ public class TratamentService {
         tratamentRepository.save(tratamentDao);
     }
 
-    public Tratamente getRetete(int page,int size){
+    public Tratamente getTratamente(int page,int size){
         Pageable pageRequest = PageRequest.of(page,size);
 
         Page<TratamentDao> tratamente = tratamentRepository.findAllByOrderByPozitieDesc(pageRequest);

@@ -25,7 +25,6 @@ public class MedicamentDao {
     @Column(name = "denumire_medicament")
     private String denumiremedicament;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "medicament")
     private List<TratamentDao>  tratament;
 }

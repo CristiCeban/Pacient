@@ -24,7 +24,6 @@ public class DiagnosticDao {
 
     private String tip;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "diagnostic")
     private List<TratamentDao> tratament;
 
