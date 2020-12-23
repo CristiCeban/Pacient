@@ -65,4 +65,7 @@ public class PacientService {
     public boolean isExistent(Long cnp){
         return pacientRepository.existsByCnp(cnp);
     }
+
+   
+
 }

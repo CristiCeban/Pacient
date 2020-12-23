@@ -6,7 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface PacientRepository extends PagingAndSortingRepository<PacientDao,Integer> {
+    
     Page<PacientDao> findAllByOrderByIdDesc(Pageable pageable);
 
     boolean existsByCnp(Long cnp);
+    
 }
