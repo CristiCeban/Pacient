@@ -18,9 +18,12 @@ import javax.persistence.UniqueConstraint;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity(name = "users") // This tells Hibernate to make a table out of this class
 public class UserDao {
@@ -36,8 +39,8 @@ public class UserDao {
   @Column
   private String password;
 
-  
-  
+
+
   private String imagePath;
 
   @JsonIgnore
@@ -49,7 +52,7 @@ public class UserDao {
   @Column
   private String name;
 
-  
+
   @OneToMany(mappedBy = "user")
   private List<PacientDao> pacients;
 

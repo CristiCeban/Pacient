@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RetetaService {
-    
+
 
     @Autowired
     private RetetaRepository retetaRepository;
@@ -39,7 +39,7 @@ public class RetetaService {
         PacientDao pacient = pacientRepository.findById(retetaInfo.getPacientId()).orElseThrow();
         newReteta.setPacient(pacient);
         retetaRepository.save(newReteta);
-        
+
     }
 
     public void removeReteta(Integer id){
@@ -47,7 +47,7 @@ public class RetetaService {
     }
 
     public void updateReteta(RetetaDto retetaInfo){
-    
+
         RetetaDao reteta = retetaRepository.findById(retetaInfo.getNrreteta()).orElseThrow();
 
         reteta.setCodfiscal(retetaInfo.getCodfiscal());
@@ -65,11 +65,12 @@ public class RetetaService {
         Page<RetetaDao> retete = retetaRepository.findAllByOrderByNrretetaDesc(pageRequest);
 
         List<RetetaDao> listaRetete = retete.getContent();
+        System.out.println(listaRetete);
 
         long totalElements = retete.getTotalElements();
         int totalPages = retete.getTotalPages();
 
         return new Retete(totalElements,totalPages,listaRetete);
- 
+
     }
 }

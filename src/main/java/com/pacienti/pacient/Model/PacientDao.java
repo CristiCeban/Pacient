@@ -14,9 +14,12 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity(name = "pacient")
 public class PacientDao {
@@ -34,7 +37,7 @@ public class PacientDao {
     private Integer varsta;
 
     private String tipasig;
-    
+
     @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "user_id")

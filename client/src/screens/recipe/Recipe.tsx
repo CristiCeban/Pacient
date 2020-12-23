@@ -31,6 +31,7 @@ const Recipe = () => {
             try{
                 setInProgress(true)
                 const response = await ApiService.getWithBody('reteta', {page: 0, size: 10})
+                console.log(response)
                 setData(response.pacients);
                 setNextPage(prev => prev +1);
                 setLastPage(response.totalPages -1);

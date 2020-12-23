@@ -3,8 +3,12 @@ package com.pacienti.pacient.Model;
 import java.util.List;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-@Data
+import lombok.Setter;
+
+@Getter
+@Setter
 @NoArgsConstructor
 public class Retete {
     private long totalElements;
