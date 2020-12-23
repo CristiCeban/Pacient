@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,4 +31,11 @@ public class RetetaDao {
 
     @Column(name = "nr_casa_asig_medic")
     private String nrasigmed;
+
+    @JsonIgnore
+    @ManyToOne()
+    @JoinColumn(name = "pacient_id")
+    private PacientDao pacient;
+
+    
 }
