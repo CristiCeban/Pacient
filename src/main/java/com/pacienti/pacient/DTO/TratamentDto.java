@@ -14,6 +14,7 @@ public class TratamentDto {
     private Integer codmedicament;
     private Integer diagnosticId;
     private Integer pacientId;
+    private Integer userId;
 
     public TratamentDto(Double cantitate, Integer codmedicament, Integer diagnosticId, Integer pacientId) {
         this.cantitate = cantitate;
