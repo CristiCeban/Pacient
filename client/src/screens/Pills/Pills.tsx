@@ -1,22 +1,19 @@
 import React, {useEffect, useState} from "react";
-import {makeStyles} from "@material-ui/core/styles";
 import {PatientInterface} from "../patient/Patient";
-import ApiService from "../../services/api";
+import {makeStyles} from "@material-ui/core/styles";
 import Loader from "react-loader-spinner";
 import {Color} from "../../config/Colors";
 import Alert from "@material-ui/lab/Alert";
 import MaterialTable from "material-table";
 import tableIcons from "../../components/table/TableIcons";
+import ApiService from "../../services/api";
 
-export interface retetaInterface {
-    nrreteta : number,
-    codfiscal : string,
-    judet : string,
-    nrasigmed : string,
-    unitatemedicala : string
+export interface pillsInterface {
+    id : number,
+    name : string,
 }
 
-const Recipe = () => {
+const Pills = () => {
     const classes = useStyles();
 
     const [data, setData] = useState<PatientInterface[]>([]); //table data
@@ -45,29 +42,11 @@ const Recipe = () => {
         })()
     },[])
 
-    const columns = [
-        {title: 'nr reteta', field: "nrreteta", hidden: true},
-        {title: "cod fiscal", field: "codfiscal"},
-        {title: "judet", field: "judet"},
-        {title: "nr casa asigurari medicale", field: "nrasigmed"},
-        {title: "Unitate medicala", field: "unitatemedicala"},
-    ]
-
-
     const handleRowAdd = async (newData: any, resolve: Function) => {
         //validation
         let errorList = []
-        if (newData.codfiscal === undefined) {
+        if (newData.denumire === undefined) {
             errorList.push("Please enter cod_fiscal")
-        }
-        if (newData.judet === undefined) {
-            errorList.push("Please enter judet")
-        }
-        if (newData.nrasigmed === undefined) {
-            errorList.push("Please enter nr_casa_asig_medic")
-        }
-        if (newData.unitatemedicala === undefined) {
-            errorList.push("Please enter unitatemedicala")
         }
 
         if (errorList.length < 1) { //no error
@@ -97,17 +76,8 @@ const Recipe = () => {
     const handleRowUpdate = async (newData : any, oldData : any, resolve : Function) => {
         //validation
         let errorList = []
-        if (newData.codfiscal === undefined) {
+        if (newData.denumire === undefined) {
             errorList.push("Please enter cod_fiscal")
-        }
-        if (newData.judet === undefined) {
-            errorList.push("Please enter judet")
-        }
-        if (newData.nrasigmed === undefined) {
-            errorList.push("Please enter nr_casa_asig_medic")
-        }
-        if (newData.unitatemedicala === undefined) {
-            errorList.push("Please enter unitatemedicala")
         }
 
         if (errorList.length < 1) { //no error
@@ -135,12 +105,9 @@ const Recipe = () => {
         }
     }
 
-
-
-
     const handleRowDelete = async (oldData: any, resolve: Function) => {
         try {
-            const response = await ApiService.getWithBody('reteta/delete', {id:oldData.nrreteta})
+            const response = await ApiService.getWithBody('reteta/delete', {id:oldData.id})
             const dataDelete = [...data];
             const index = oldData.tableData.id;
             dataDelete.splice(index,1);
@@ -156,6 +123,10 @@ const Recipe = () => {
         }
     }
 
+    const columns = [
+        {title: 'id', field: "id", hidden: true},
+        {title: "denumire", field: "denumire"},
+    ]
 
     return(
         <div style={{marginTop:100}}>
@@ -175,7 +146,7 @@ const Recipe = () => {
                         }
                     </div>
                     <MaterialTable
-                        title={'Recipe managment'}
+                        title={'Pills managment'}
                         columns={columns}
                         data={data}
                         icons={tableIcons}
@@ -214,5 +185,4 @@ const useStyles = makeStyles((theme) => ({
         height : 200,
     }
 }));
-
-export default Recipe
+export default Pills

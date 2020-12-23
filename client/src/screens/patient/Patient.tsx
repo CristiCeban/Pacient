@@ -50,7 +50,7 @@ const Patient = () => {
     },[])
 
 
-    var columns = [
+    const columns = [
         {title: 'id', field: "id", hidden: true},
         {title: "CNP", field: "cnp"},
         {title: "Nume", field: "nume"},

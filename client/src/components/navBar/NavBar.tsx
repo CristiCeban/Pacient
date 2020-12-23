@@ -2,7 +2,7 @@ import React from 'react'
 import { fade, makeStyles } from '@material-ui/core/styles';
 import {AppBar, IconButton, Link, Toolbar, Typography} from "@material-ui/core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDiagnoses,faHome,faNotesMedical,faHospitalUser,faPills,faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faDiagnoses,faHome,faNotesMedical,faHospitalUser,faPills,faSignOutAlt,faProcedures } from "@fortawesome/free-solid-svg-icons";
 import {useLocation} from "react-router";
 import {onLogout} from "../../redux/actions/generalActions";
 import {useDispatch} from "react-redux";
@@ -13,6 +13,7 @@ enum routerEnum {
     diagnostic = '/diagnostic',
     treatment = '/treatment',
     recipe = '/recipe',
+    pills = '/pills',
 }
 
 const NavBar = () => {
@@ -69,7 +70,7 @@ const NavBar = () => {
 
                     <Link href={'/treatment'}>
                         <IconButton>
-                            <FontAwesomeIcon icon={faPills} className={pathname.includes(routerEnum.treatment)
+                            <FontAwesomeIcon icon={faProcedures} className={pathname.includes(routerEnum.treatment)
                                 ? classes.selectedNavIcon
                                 :
                                 undefined}
@@ -80,6 +81,16 @@ const NavBar = () => {
                     <Link href={'/recipe'}>
                         <IconButton>
                             <FontAwesomeIcon icon={faNotesMedical} className={pathname.includes(routerEnum.recipe)
+                                ? classes.selectedNavIcon
+                                :
+                                undefined}
+                            />
+                        </IconButton>
+                    </Link>
+
+                    <Link href={'/pills'}>
+                        <IconButton>
+                            <FontAwesomeIcon icon={faPills} className={pathname.includes(routerEnum.pills)
                                 ? classes.selectedNavIcon
                                 :
                                 undefined}
