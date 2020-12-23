@@ -24,15 +24,19 @@ public class TratamentDao {
     @JoinColumn(name = "diagnostic_id")
     private DiagnosticDao diagnostic;
     
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "cod_medicament")
     private MedicamentDao medicament;
 
     private Double cantitate;
 
     
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "pacient_id")
     private PacientDao pacient;
+
+    @ManyToOne
+    @JoinColumn(name = "medic_id")
+    private UserDao user;
 
 }

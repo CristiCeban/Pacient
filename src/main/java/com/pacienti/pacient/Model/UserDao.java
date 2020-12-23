@@ -56,6 +56,7 @@ public class UserDao {
   @OneToMany(mappedBy = "user")
   private List<PacientDao> pacients;
 
-
+  @OneToMany(mappedBy = "user")
+  private List<TratamentDao> tratamente;
 
 }

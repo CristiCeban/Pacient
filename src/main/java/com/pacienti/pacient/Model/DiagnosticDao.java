@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Entity(name = "diagnostic")
 public class DiagnosticDao {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codboala;
 
     private String denumire;
