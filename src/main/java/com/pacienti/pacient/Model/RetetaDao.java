@@ -32,7 +32,7 @@ public class RetetaDao {
     @Column(name = "nr_casa_asig_medic")
     private String nrasigmed;
 
-    @JsonIgnore
+    
     @ManyToOne()
     @JoinColumn(name = "pacient_id")
     private PacientDao pacient;
