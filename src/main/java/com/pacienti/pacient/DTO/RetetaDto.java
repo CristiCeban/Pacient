@@ -11,4 +11,5 @@ public class RetetaDto {
     private String unitatemedicala;
     private String judet;
     private String nrasigmed;
+    private Integer pacientId;
 }

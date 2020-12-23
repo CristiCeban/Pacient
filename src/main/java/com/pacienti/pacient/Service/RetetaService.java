@@ -3,8 +3,10 @@ package com.pacienti.pacient.Service;
 import java.util.List;
 
 import com.pacienti.pacient.DTO.RetetaDto;
+import com.pacienti.pacient.Model.PacientDao;
 import com.pacienti.pacient.Model.RetetaDao;
 import com.pacienti.pacient.Model.Retete;
+import com.pacienti.pacient.Repository.PacientRepository;
 import com.pacienti.pacient.Repository.RetetaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class RetetaService {
     @Autowired
     private RetetaRepository retetaRepository;
 
+    @Autowired
+    private PacientRepository pacientRepository;
+
 
     public void addReteta(RetetaDto retetaInfo){
         RetetaDao newReteta = new RetetaDao();
@@ -31,6 +36,8 @@ public class RetetaService {
         newReteta.setNrasigmed(retetaInfo.getNrasigmed());
         newReteta.setUnitatemedicala(retetaInfo.getUnitatemedicala());
 
+        PacientDao pacient = pacientRepository.findById(retetaInfo.getPacientId()).orElseThrow();
+        newReteta.setPacient(pacient);
         retetaRepository.save(newReteta);
         
     }
@@ -47,7 +54,8 @@ public class RetetaService {
         reteta.setJudet(retetaInfo.getJudet());
         reteta.setNrasigmed(retetaInfo.getNrasigmed());
         reteta.setUnitatemedicala(retetaInfo.getUnitatemedicala());
-        
+        PacientDao pacient = pacientRepository.findById(retetaInfo.getPacientId()).orElseThrow();
+        reteta.setPacient(pacient);
         retetaRepository.save(reteta);
     }
 
