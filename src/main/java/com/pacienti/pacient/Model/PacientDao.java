@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -42,9 +41,11 @@ public class PacientDao {
     @JoinColumn(name = "user_id")
     private UserDao user;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "pacient")
     private List<RetetaDao> reteta;
-    
+
+    @JsonIgnore
     @OneToMany(mappedBy = "pacient")
     private List<TratamentDao> tratament;
 }

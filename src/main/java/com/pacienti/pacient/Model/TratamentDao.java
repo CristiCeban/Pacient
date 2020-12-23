@@ -30,7 +30,7 @@ public class TratamentDao {
 
     private Double cantitate;
 
-    @JsonIgnore
+    
     @ManyToOne()
     @JoinColumn(name = "pacient_id")
     private PacientDao pacient;
