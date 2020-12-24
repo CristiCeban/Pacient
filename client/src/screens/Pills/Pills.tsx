@@ -51,7 +51,7 @@ const Pills = () => {
 
         if (errorList.length < 1) { //no error
             try {
-                const response = await ApiService.post('reteta', {denumire : newData.denumiremedicament})
+                const response = await ApiService.post('medicament', {denumire : newData.denumiremedicament})
                 const dataToAdd = [...data];
                 dataToAdd.push(newData);
                 setData(dataToAdd);
