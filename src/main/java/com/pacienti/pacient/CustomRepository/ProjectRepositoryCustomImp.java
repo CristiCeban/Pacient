@@ -11,12 +11,12 @@ import com.pacienti.pacient.DTO.TratamentMedicament;
 
 
 
-public class CustomProjectRepositoryImp implements CustomProjectRepository {
+public class ProjectRepositoryCustomImp implements ProjectRepositoryCustom {
 
     
     private final EntityManager em;
 
-    CustomProjectRepositoryImp(EntityManager em){
+    ProjectRepositoryCustomImp(EntityManager em){
         this.em = em;
     }
 

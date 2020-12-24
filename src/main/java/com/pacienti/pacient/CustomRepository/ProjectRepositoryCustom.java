@@ -4,6 +4,6 @@ import java.util.List;
 
 import com.pacienti.pacient.DTO.TratamentMedicament;
 
-public interface CustomProjectRepository {
+public interface ProjectRepositoryCustom {
     public TratamentMedicament getMedicamentToMedic();
 }
