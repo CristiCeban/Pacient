@@ -1,18 +1,35 @@
 package com.pacienti.pacient.Model;
 
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SqlResultSetMapping;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.pacienti.pacient.DTO.TratamentMedicament;
 
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+
+@SqlResultSetMapping(name = "MedicinePerDoctor", classes = {
+    @ConstructorResult(targetClass = TratamentMedicament.class,
+    columns = {
+        @ColumnResult(name = "medic_id"),
+        @ColumnResult(name = "cod_medicament"),
+        @ColumnResult(name = "cantitati")
+    })
+})
+
+
+
 
 @Getter
 @Setter

@@ -1,6 +1,5 @@
 package com.pacienti.pacient.DTO;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
