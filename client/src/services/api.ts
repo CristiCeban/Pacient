@@ -60,17 +60,6 @@ export default {
     delete(path:string){
         return apiClient.delete(`/${path}`);
     },
-    deleteWithBody(path:string,body:any){
-        return apiClient.delete(`/${path}`,{
-            headers: {
-                'Content-Type' : 'multipart/form-data',
-                "X-Requested-With": "XMLHttpRequest"
-            },
-            data: {
-                productId : body
-            }
-        })
-    }
 }
 
 const errorHandler = (err: any) => {

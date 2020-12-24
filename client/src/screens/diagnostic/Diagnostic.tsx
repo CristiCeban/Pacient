@@ -9,6 +9,7 @@ import MaterialTable from "material-table";
 import tableIcons from "../../components/table/TableIcons";
 
 export interface diagnosticInterface {
+    codboala: number;
     codBoala : number,
     denumire : string,
     tip : string,
