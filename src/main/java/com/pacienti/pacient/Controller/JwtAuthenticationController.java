@@ -17,6 +17,7 @@ import java.util.Objects;
 
 import com.pacienti.pacient.Configuration.JwtTokenUtil;
 import com.pacienti.pacient.DTO.UserDto;
+import com.pacienti.pacient.DTO.Users;
 import com.pacienti.pacient.Model.JwtRequest;
 import com.pacienti.pacient.Model.JwtResponse;
 import com.pacienti.pacient.Repository.UserRepository;
@@ -87,68 +88,8 @@ public class JwtAuthenticationController {
 		}
 	}
 
-	// @GetMapping(value = "/me")
-	// private ProfileResponse getProf(Authentication authenticate) {
-		
-	// 	UserDao user = userDetailsService.currentUser(authenticate);
-
-	// 	List<ProductDao> userProducts = productRepository.findAllByUserId(user);
-		
-	// 	List<LikedProduct> likedProducts = new ArrayList<>();
-
-    //     for (ProductDao product : userProducts) {
-    //         boolean isLiked = wishListRepository.existsByUserIdAndProductId(user.getId(), product.getId());
-    //         likedProducts.add(new LikedProduct(product,isLiked));
-    //     }
-
-	// 	return new ProfileResponse(user, likedProducts);
-
-	// }
-
-	// @GetMapping(value = "/profile/{id}")
-	// private ProfileResponse getProf(@PathVariable("id") Integer id,Authentication authentication) {
-		
-	// 	UserDao currentUser = userDetailsService.currentUser(authentication);
-
-	// 	UserDao user = userRepository.findById(id).orElseThrow();
-
-	// 	List<ProductDao> userProducts = productRepository.findAllByUserId(user);
-
-	// 	List<LikedProduct> likedProducts = new ArrayList<>();
-
-    //     for (ProductDao product : userProducts) {
-    //         boolean isLiked = wishListRepository.existsByUserIdAndProductId(currentUser.getId(), product.getId());
-    //         likedProducts.add(new LikedProduct(product,isLiked));
-    //     }
-
-	// 	return new ProfileResponse(user, likedProducts);
-	// }
-
-	// @PostMapping(value = "/me/update")
-	// private void updateProf(Authentication authentication,
-	// 		@RequestParam(required = false, name = "imagePath") MultipartFile fotka,
-	// 		@RequestParam(required = false, name = "name") String name,@RequestParam(required = false, name = "phone") String phone,@RequestParam(required = false, name = "username") String username) throws IOException {
-		
-		
-	// 	UserDao user = userDetailsService.currentUser(authentication);
-
-	// 	UserDto updatedUser = new UserDto();
-
-		
-	// 	if (fotka != null) {
-	// 		String imagePath = productController.saveImage(fotka);
-	// 		updatedUser.setImagePath(imagePath);
-	// 		System.out.println("Saved");
-	// 	}
-	// 	if(name != null){
-	// 		updatedUser.setName(name);
-	// 	}
-	// 	if (phone != null) {
-	// 		updatedUser.setPhone(phone);
-	// 	}
-	// 	if (username != null) {
-	// 		updatedUser.setUsername(username);;
-	// 	}
-	// 	userDetailsService.updateProf(user, updatedUser);
-	// }
+	@GetMapping(value = "/users")
+	public Users getAllUsers(@RequestParam Integer page,@RequestParam Integer size){
+		return userDetailsService.getUsers(page, size);
+	}
  }
