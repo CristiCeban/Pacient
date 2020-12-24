@@ -4,6 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import com.pacienti.pacient.DTO.NrRetetePacient;
+import com.pacienti.pacient.DTO.RetetaPacient;
 import com.pacienti.pacient.DTO.TratamentMedicament;
 import com.pacienti.pacient.DTO.TratamenteMedicamente;
 import com.pacienti.pacient.Repository.ProjectRepository;
@@ -40,5 +42,25 @@ public class AdditionalService {
         }
 
         return null;
+    }
+
+    public NrRetetePacient getRetetePerPacient(){
+            String queryString = "select pacient_id,COUNT(nr_reteta) as nr from reteta  GROUP BY ROLLUP(pacient_id)";
+            try {
+                Query query = em.createNativeQuery(queryString);
+                List results = em.createNativeQuery(queryString).getResultList();
+                List returnedList = new ArrayList();
+                for (Object itVar : results)
+                {
+                    RetetaPacient temp =  new RetetaPacient((Object[]) itVar);
+                    returnedList.add(temp);
+                }
+    
+                return new NrRetetePacient(returnedList);
+                } catch (Exception e) {
+               e.printStackTrace();
+            }
+    
+            return null;
     }
 }

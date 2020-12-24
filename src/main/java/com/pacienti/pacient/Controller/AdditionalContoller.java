@@ -1,5 +1,6 @@
 package com.pacienti.pacient.Controller;
 
+import com.pacienti.pacient.DTO.NrRetetePacient;
 import com.pacienti.pacient.DTO.TratamentMedicament;
 import com.pacienti.pacient.DTO.TratamenteMedicamente;
 import com.pacienti.pacient.Service.AdditionalService;
@@ -19,5 +20,10 @@ public class AdditionalContoller {
     @GetMapping(value = "/medicamentpermedic")
     public TratamenteMedicamente getTratamentMedicament(){
         return additionalService.getMedicamentPerMedic();
+    }
+
+    @GetMapping(value = "/reteteperpacient")
+    public NrRetetePacient getNrRetete(){
+        return additionalService.getRetetePerPacient();
     }
 }
