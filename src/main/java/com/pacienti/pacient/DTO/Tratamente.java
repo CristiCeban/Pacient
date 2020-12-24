@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 public class Tratamente {
     private long totalElements;
     private int totalPages;
-    private List<TratamentDao> pacients;
+    private List<TratamentDao> tratamente;
 
-    public Tratamente(long totalElements, int totalPages, List<TratamentDao> pacients) {
+    public Tratamente(long totalElements, int totalPages, List<TratamentDao> tratamente) {
         this.totalElements = totalElements;
         this.totalPages = totalPages;
-        this.pacients = pacients;
+        this.tratamente = tratamente;
     }
 }
