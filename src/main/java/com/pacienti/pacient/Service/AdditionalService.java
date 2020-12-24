@@ -5,28 +5,40 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.pacienti.pacient.DTO.TratamentMedicament;
+import com.pacienti.pacient.DTO.TratamenteMedicamente;
 import com.pacienti.pacient.Repository.ProjectRepository;
 import com.pacienti.pacient.Repository.TratamentRepository;
 
+import org.hibernate.type.AnyType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class AdditionalService {
-    @PersistenceContext 
+    @PersistenceContext
     private EntityManager em;
 
 
-    public TratamentMedicament getMedicamentPerMedic(){
+    public TratamenteMedicamente getMedicamentPerMedic(){
         String queryString = "select medic_id,cod_medicament,sum(cantitate) as cantitati from tratament  GROUP BY ROLLUP(medic_id,cod_medicament)";
         try {
             Query query = em.createNativeQuery(queryString);
+            List results = em.createNativeQuery(queryString).getResultList();
+            List returnedList = new ArrayList();
+            for (Object itVar : results)
+            {
+                TratamentMedicament temp =  new TratamentMedicament((Object[]) itVar);
+                returnedList.add(temp);
+            }
 
-            return new TratamentMedicament((Object[]) query.getSingleResult());
+            return new TratamenteMedicamente(returnedList);
             } catch (Exception e) {
            e.printStackTrace();
         }
-        
+
         return null;
     }
 }

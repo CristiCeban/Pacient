@@ -1,6 +1,7 @@
 package com.pacienti.pacient.Controller;
 
 import com.pacienti.pacient.DTO.TratamentMedicament;
+import com.pacienti.pacient.DTO.TratamenteMedicamente;
 import com.pacienti.pacient.Service.AdditionalService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class AdditionalContoller {
 
 
     @GetMapping(value = "/medicamentpermedic")
-    public TratamentMedicament getTratamentMedicament(){
+    public TratamenteMedicamente getTratamentMedicament(){
         return additionalService.getMedicamentPerMedic();
     }
 }
