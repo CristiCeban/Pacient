@@ -109,3 +109,7 @@ A preview of uml (For full UML check PacientApplication.uml)
 
 for demo video of app you can check
 https://www.youtube.com/watch?v=vo0OMQhLpag&feature=youtu.be
+
+**Conclusion:**
+Oracle DB Works fine with spring boot, and it can be useful for small and big app,but for a small app I would choose something easier.
+But for big it's a must-have.
