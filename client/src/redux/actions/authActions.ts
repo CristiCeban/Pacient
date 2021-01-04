@@ -56,14 +56,14 @@ export const onLogin=(body : LoginModel) => {
         try {
             dispatch({type :'SET_IN_PROGRESS',payload:true})
             const response = await ApiService.post('authenticate', {...body})
-            setTimeout(() => dispatch({type: 'ON_LOGIN', payload: response.data.token}),1500)
+            dispatch({type: 'ON_LOGIN', payload: response.data.token})
         }
         catch(e){
             console.error(e);
             dispatch({type:'ON_ERROR',payload:"Email or password doesn't match"})
         }
         finally {
-            setTimeout(() => dispatch({type : 'SET_IN_PROGRESS',payload : false}),1500)
+            dispatch({type : 'SET_IN_PROGRESS',payload : false})
         }
     }
 }
@@ -75,15 +75,14 @@ export const onRegister = (body : any) => {
             const response = await ApiService.post('register', {...body})
             console.log(response)
             console.log(response.data);
-            setTimeout(() => dispatch({type: 'ON_REGISTER', payload: response.data.token})
-                ,1500)
+            dispatch({type: 'ON_REGISTER', payload: response.data.token})
         }
         catch (e) {
             console.log(e);
             dispatch({type:'ON_ERROR_REGISTER',payload:"This email is already taken"})
         }
         finally {
-            setTimeout(() => dispatch({type : 'SET_IN_PROGRESS',payload : false}),1500)
+            dispatch({type : 'SET_IN_PROGRESS',payload : false})
         }
     }
 }

@@ -15,9 +15,9 @@ public class TratamentMedicament {
     private BigDecimal cantitate;
 
     public TratamentMedicament(Object[] columns) {
-        this.medicId = (columns[0] != null)?( (BigDecimal)columns[0] ) : BigDecimal.valueOf(0);
-        this.codmedicament = (columns[1] != null)?( (BigDecimal)columns[1] ) : BigDecimal.valueOf(0);
-        this.cantitate = (columns[2] != null)?( (BigDecimal)columns[2] ) : BigDecimal.valueOf(0);
+        this.medicId = (columns[0] != null)?( (BigDecimal)columns[0] ) : BigDecimal.valueOf(-1);
+        this.codmedicament = (columns[1] != null)?( (BigDecimal)columns[1] ) : BigDecimal.valueOf(-1);
+        this.cantitate = (columns[2] != null)?( (BigDecimal)columns[2] ) : BigDecimal.valueOf(-1);
 
 
     }

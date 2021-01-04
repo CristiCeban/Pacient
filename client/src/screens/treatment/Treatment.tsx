@@ -48,7 +48,7 @@ const Treatment = () => {
         (async () => {
             try{
                 setInProgress(true)
-                const response = await ApiService.getWithBody('tratament', {page: 0, size: 10})
+                const response = await ApiService.getWithBody('tratament', {page: 0, size: 100})
                 const payload = response.tratamente.map((el:TreatmentInterface) => (
                     {
                         ...el,
@@ -70,7 +70,7 @@ const Treatment = () => {
             }
 
             try{
-                const response = await ApiService.getWithBody('medicament',{page : 0,size : 10});
+                const response = await ApiService.getWithBody('medicament',{page : 0,size : 100});
                 const payload = {};
                 response.medicamente.map((medicament : pillsInterface) => {
                     const {codmedicament,denumiremedicament} = medicament
@@ -84,7 +84,7 @@ const Treatment = () => {
             }
 
             try{
-                const response = await ApiService.getWithBody('diagnostic',{page: 0,size : 10})
+                const response = await ApiService.getWithBody('diagnostic',{page: 0,size : 100})
                 const payload = {};
                 response.diagnoze.map((diagnoza : diagnosticInterface) => {
                     const {codboala,denumire,tip} = diagnoza;
@@ -98,7 +98,7 @@ const Treatment = () => {
             }
 
             try{
-                const response = await ApiService.getWithBody('pacient', {page: 0, size: 10})
+                const response = await ApiService.getWithBody('pacient', {page: 0, size: 100})
                 const payload = {}
                 response.pacients.map((pacient : PatientInterface) => {
                     const {id,nume,prenume} = pacient;
@@ -277,7 +277,8 @@ const Treatment = () => {
                                 }),
                         }}
                         options={{
-                            search: true
+                            search: true,
+                            exportButton: true,
                         }}
                     />
                 </>

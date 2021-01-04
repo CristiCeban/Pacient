@@ -29,7 +29,7 @@ const Diagnostic = () => {
         (async () => {
             try{
                 setInProgress(true)
-                const response = await ApiService.getWithBody('diagnostic', {page: 0, size: 10})
+                const response = await ApiService.getWithBody('diagnostic', {page: 0, size: 100})
                 setData(response.diagnoze);
                 setNextPage(prev => prev +1);
                 setLastPage(response.totalPages -1);
@@ -178,7 +178,8 @@ const Diagnostic = () => {
                                 }),
                         }}
                         options={{
-                            search: true
+                            search: true,
+                            exportButton: true,
                         }}
                     />
                 </>

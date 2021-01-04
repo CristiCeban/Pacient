@@ -27,7 +27,7 @@ const Pills = () => {
         (async () => {
             try{
                 setInProgress(true)
-                const response = await ApiService.getWithBody('medicament', {page: 0, size: 10})
+                const response = await ApiService.getWithBody('medicament', {page: 0, size: 100})
                 setData(response.medicamente);
                 setNextPage(prev => prev +1);
                 setLastPage(response.totalPages -1);
@@ -121,7 +121,7 @@ const Pills = () => {
         catch (e) {
             console.log(e);
             setIserror(true)
-            setErrorMessages(['Server error']);
+            setErrorMessages(['Cannot delete constrain key,delete first row with constrain key in it.']);
             resolve()
         }
     }
@@ -168,7 +168,8 @@ const Pills = () => {
                                 }),
                         }}
                         options={{
-                            search: true
+                            search: true,
+                            exportButton: true,
                         }}
                     />
                 </>

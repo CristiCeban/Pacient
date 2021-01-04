@@ -10,13 +10,10 @@ import lombok.NoArgsConstructor;
 public class RetetaPacient {
     private BigDecimal  pacientId;
     private BigDecimal nrRetete;
-    
+
 
     public RetetaPacient(Object[] columns) {
-        this.pacientId = (columns[0] != null)?( (BigDecimal)columns[0] ) : BigDecimal.valueOf(0);
-        this.nrRetete = (columns[1] != null)?( (BigDecimal)columns[1] ) : BigDecimal.valueOf(0);
-       
-
-
+        this.pacientId = (columns[0] != null)?( (BigDecimal)columns[0] ) : BigDecimal.valueOf(-1);
+        this.nrRetete = (columns[1] != null)?( (BigDecimal)columns[1] ) : BigDecimal.valueOf(-1);
     }
 }

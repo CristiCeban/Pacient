@@ -27,7 +27,7 @@ const Navigation = ({history} : any) => {
                     <Route exact path={'/'} component={AuthScreen}/>
                     <Route exact path={'/signIn'} component={AuthScreen}/>
                     <Route exact path={'/signUp'} component={RegisterScreen}/>
-                    <Route path={'/*'} component={() => <Redirect to={'/signIn'}/>}/>
+                    <Route path={'/*'} component={AuthScreen}/>
                 </Switch>
                 :
                 <Switch>

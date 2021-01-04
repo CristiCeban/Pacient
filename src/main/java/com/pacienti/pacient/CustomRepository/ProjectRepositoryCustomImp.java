@@ -13,7 +13,7 @@ import com.pacienti.pacient.DTO.TratamentMedicament;
 
 public class ProjectRepositoryCustomImp implements ProjectRepositoryCustom {
 
-    
+
     private final EntityManager em;
 
     ProjectRepositoryCustomImp(EntityManager em){
@@ -28,10 +28,10 @@ public class ProjectRepositoryCustomImp implements ProjectRepositoryCustom {
 
             return (TratamentMedicament)query.getResultList();
             } catch (Exception e) {
-            //TODO: handle exception
+            e.printStackTrace();
         }
-        
+
         return null;
     }
-    
+
 }

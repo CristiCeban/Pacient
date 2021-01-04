@@ -32,7 +32,7 @@ const Recipe = () => {
         (async () => {
             try{
                 setInProgress(true)
-                const response = await ApiService.getWithBody('reteta', {page: 0, size: 10})
+                const response = await ApiService.getWithBody('reteta', {page: 0, size: 100})
                 const payload =  response.retete.map((el: retetaInterface) => ({...el,pacient : el.pacient.id}))
                 setData(payload);
                 setNextPage(prev => prev +1);
@@ -47,7 +47,7 @@ const Recipe = () => {
             }
 
             try{
-                const response = await ApiService.getWithBody('pacient', {page: 0, size: 10})
+                const response = await ApiService.getWithBody('pacient', {page: 0, size: 100})
                 const payload = {}
                 response.pacients.map((pacient : PatientInterface) => {
                     const {id,nume,prenume} = pacient;
@@ -227,7 +227,8 @@ const Recipe = () => {
                                 }),
                         }}
                         options={{
-                            search: true
+                            search: true,
+                            exportButton: true,
                         }}
                     />
                 </>

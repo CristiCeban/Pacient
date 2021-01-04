@@ -34,7 +34,7 @@ const Patient = () => {
         (async () => {
             try{
                 setInProgress(true)
-                const response = await ApiService.getWithBody('pacient', {page: 0, size: 10})
+                const response = await ApiService.getWithBody('pacient', {page: 0, size: 100})
                 setData(response.pacients);
                 setNextPage(prev => prev +1);
                 setLastPage(response.totalPages -1);
@@ -52,11 +52,11 @@ const Patient = () => {
 
     const columns = [
         {title: 'id', field: "id", hidden: true},
-        {title: "CNP", field: "cnp"},
+        {title: "CNP", field: "cnp",type:'numeric'},
         {title: "Nume", field: "nume"},
         {title: "Prenume", field: "prenume"},
         {title: "Tipul asigurarii", field: "tipasig"},
-        {title: "Varsta", field: "varsta"}
+        {title: "Varsta", field: "varsta",type:'numeric'}
     ]
 
     const handleRowAdd = async (newData: any, resolve: Function) => {
@@ -232,6 +232,7 @@ const Patient = () => {
                     </div>
                     <MaterialTable
                         title={'Patient management'}
+                        //@ts-ignore
                         columns={columns}
                         data={data}
                         icons={tableIcons}
@@ -250,7 +251,8 @@ const Patient = () => {
                                 }),
                         }}
                         options={{
-                            search: true
+                            search: true,
+                            exportButton: true,
                         }}
                     />
                 </>
